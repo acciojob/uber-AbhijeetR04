@@ -11,30 +11,18 @@ import java.util.List;
 public class Driver {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int driverId;
 
-    private String mobileNo;
-
+    private String mobile;
     private String password;
 
-    //Bidirectional Mapping of Driver(P) and Cab(C)
     @OneToOne
     @JoinColumn
     private Cab cab;
 
-    public Cab getCab() {
-        return cab;
-    }
-
-    public void setCab(Cab cab) {
-        this.cab = cab;
-    }
-    //
-
-    //Mapping of Driver(P) and Trip(C)
     @OneToMany(mappedBy = "driver", cascade = CascadeType.ALL)
-    private List<TripBooking> tripBookingList = new ArrayList<>();
+    List<TripBooking> tripBookingList = new ArrayList<>();
 
     public List<TripBooking> getTripBookingList() {
         return tripBookingList;
@@ -43,26 +31,36 @@ public class Driver {
     public void setTripBookingList(List<TripBooking> tripBookingList) {
         this.tripBookingList = tripBookingList;
     }
-    //
 
+    public Driver(int driverId, String mobile, String password, Cab cab) {
+        this.driverId = driverId;
+        this.mobile = mobile;
+        this.password = password;
+        this.cab = cab;
+    }
 
     public Driver() {
     }
 
-    public int getId() {
-        return id;
+    public Driver(String mobile, String password) {
+        this.mobile = mobile;
+        this.password = password;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public int getDriverId() {
+        return driverId;
     }
 
-    public String getMobileNo() {
-        return mobileNo;
+    public void setDriverId(int driverId) {
+        this.driverId = driverId;
     }
 
-    public void setMobileNo(String mobileNo) {
-        this.mobileNo = mobileNo;
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
     }
 
     public String getPassword() {
@@ -73,17 +71,11 @@ public class Driver {
         this.password = password;
     }
 
-    //Admin to Driver
-    @ManyToOne
-    @JsonIgnore
-    private Admin admin;
-
-    public Admin getAdmin() {
-        return admin;
+    public Cab getCab() {
+        return cab;
     }
 
-    public void setAdmin(Admin admin) {
-        this.admin = admin;
+    public void setCab(Cab cab) {
+        this.cab = cab;
     }
-    //
 }

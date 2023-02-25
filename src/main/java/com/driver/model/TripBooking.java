@@ -7,60 +7,36 @@ import javax.persistence.*;
 public class TripBooking {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int tripBookingId;
 
     private String fromLocation;
-
     private String toLocation;
 
     private int distanceInKm;
 
     @Enumerated(value = EnumType.STRING)
-    private TripStatus tripStatus;
+    private TripStatus status;
 
     private int bill;
-
-
-    //Mapping of Driver(P) and Trip(C)
-    @ManyToOne
-    @JoinColumn
-    private Driver driver;
-
-    public Driver getDriver() {
-        return driver;
-    }
-
-    public void setDriver(Driver driver) {
-        this.driver = driver;
-    }
-    //
-
-
-    //Mapping of Customer(P) and Trip(C)
-    @ManyToOne
-    @JoinColumn
-    private Customer customer;
-
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
-    //
-
 
     public TripBooking() {
     }
 
-    public int getId() {
-        return id;
+    public TripBooking(String fromLocation, String toLocation, int distanceInKm, TripStatus status, int bill) {
+        this.fromLocation = fromLocation;
+        this.toLocation = toLocation;
+        this.distanceInKm = distanceInKm;
+        this.status = status;
+        this.bill = bill;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public int getTripBookingId() {
+        return tripBookingId;
+    }
+
+    public void setTripBookingId(int tripBookingId) {
+        this.tripBookingId = tripBookingId;
     }
 
     public String getFromLocation() {
@@ -87,12 +63,12 @@ public class TripBooking {
         this.distanceInKm = distanceInKm;
     }
 
-    public TripStatus getTripStatus() {
-        return tripStatus;
+    public TripStatus getStatus() {
+        return status;
     }
 
-    public void setTripStatus(TripStatus tripStatus) {
-        this.tripStatus = tripStatus;
+    public void setStatus(TripStatus status) {
+        this.status = status;
     }
 
     public int getBill() {
@@ -102,4 +78,31 @@ public class TripBooking {
     public void setBill(int bill) {
         this.bill = bill;
     }
+
+
+    @ManyToOne
+    @JoinColumn
+    private Driver driver;
+
+
+    @ManyToOne
+    @JoinColumn
+    private Customer customer;
+
+    public Driver getDriver() {
+        return driver;
+    }
+
+    public void setDriver(Driver driver) {
+        this.driver = driver;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
 }

@@ -6,81 +6,35 @@ import java.util.List;
 
 @Entity
 @Table
-public class Admin{
+public class Admin {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int adminId;
 
     private String username;
-
     private String password;
-
-    // Mapping of Admin(P) and Customer(C)
-    @OneToMany(mappedBy = "admin", cascade = CascadeType.ALL)
-    private List<Customer> listOfCustomers = new ArrayList<>();
-
-    public List<Customer> getListOfCustomers() {
-        return listOfCustomers;
-    }
-
-    public void setListOfCustomers(List<Customer> listOfCustomers) {
-        this.listOfCustomers = listOfCustomers;
-    }
-    //
-
-    //Mapping of Admin(P) and Driver(C)
-    @OneToMany(mappedBy = "admin", cascade = CascadeType.ALL)
-    private List<Driver> listOfDrivers = new ArrayList<>();
-
-    public List<Driver> getListOfDrivers() {
-        return listOfDrivers;
-    }
-
-    public void setListOfDrivers(List<Driver> listOfDrivers) {
-        this.listOfDrivers = listOfDrivers;
-    }
-    //
-
-    // to get the list of customers and list of drivers we have to do mapping.
-    //Admin to customer.
-    @OneToMany(mappedBy = "admin")
-    private List<Customer> customerList = new ArrayList<>();
-
-    public List<Customer> getCustomerList() {
-        return customerList;
-    }
-
-    public void setCustomerList(List<Customer> customerList) {
-        this.customerList = customerList;
-    }
-    //
-
-    //Admin to Driver
-    @OneToMany(mappedBy = "admin")
-    private List<Driver> driverList = new ArrayList<>();
-
-    public List<Driver> getDriverList() {
-        return driverList;
-    }
-
-    public void setDriverList(List<Driver> driverList) {
-        this.driverList = driverList;
-    }
-    //
-
-    //
-
 
     public Admin() {
     }
 
-    public int getId() {
-        return id;
+    public Admin(int adminId, String username, String password) {
+        this.adminId = adminId;
+        this.username = username;
+        this.password = password;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public Admin(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
+    public int getAdminId() {
+        return adminId;
+    }
+
+    public void setAdminId(int adminId) {
+        this.adminId = adminId;
     }
 
     public String getUsername() {
