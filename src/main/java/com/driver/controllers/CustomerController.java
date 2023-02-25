@@ -20,10 +20,10 @@ public class CustomerController {
 	public void deleteCustomer(@RequestParam Integer customerId){
 	}
 
-	@PostMapping("/bookTrip")
-	public ResponseEntity<Integer> bookTrip(@RequestParam Integer customerId, @RequestParam String fromLocation, @RequestParam String toLocation, @RequestParam Integer distanceInKm) throws Exception {
-		return new ResponseEntity<>(bookedTrip.getTripBookingId(), HttpStatus.CREATED);
-	}
+//	@PostMapping("/bookTrip")
+//	public ResponseEntity<Integer> bookTrip(@RequestParam Integer customerId, @RequestParam String fromLocation, @RequestParam String toLocation, @RequestParam Integer distanceInKm) throws Exception {
+//		return new ResponseEntity<>(bookedTrip.getTripBookingId(), HttpStatus.CREATED);
+//	}
 
 	@DeleteMapping("/complete")
 	public void completeTrip(@RequestParam Integer tripId){
